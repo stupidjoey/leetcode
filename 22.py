@@ -2,30 +2,28 @@ class Solution:
     # @param {integer} n
     # @return {string[]}
     def generateParenthesis(self, n):
-    
-
-        def recursive(n):
-            if n == 1:
-                return ["()"]
-            else:
-                finalcases = []
-                basecases = self.generateParenthesis(n-1).split(',')
-                for case in basecases:
-                    newcase1 = "()" + case
-                    newcase2 = case + "()"
-                    newcase3 = "(" + case + ")"
-                    finalcases.append(newcase1)
-                    finalcases.append(newcase2)
-                    finalcases.append(newcase3)
-                finalcases = list(set(finalcases))
-                return finalcases
+        if n == 1:
+            return ['()']
+        else:
+            finalcases = []
+            halfn = n/2
+            for i in range(1,halfn+1):
+                j = n - i
+                basecases_i = self.generateParenthesis(i)
+                basecases_j = self.generateParenthesis(j)
+                for casei in basecases_i:
+                    for casej in basecases_j:
+                        newcase1 = casei + casej
+                        newcase2 = casej + casei
+                        finalcases.append(newcase1)
+                        finalcases.append(newcase2)
+                        if i == 1:
+                            newcase3 = "(" + casej + ")"
+                            finalcases.append(newcase3)
+            finalcases = list(set(finalcases))
+            return finalcases
                 
-        finalcases = recursive(n)
-        finalstr = ''
-        for case in finalcases:
-            print case
-        return finalstr[:-1]
-    
+
 sol = Solution()
 
-print repr(sol.generateParenthesis(3))
+print repr(sol.generateParenthesis(4))
