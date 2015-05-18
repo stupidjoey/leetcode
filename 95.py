@@ -14,24 +14,23 @@ class Solution:
             treemat[i][i] = [TreeNode(i)]
             treemat[i][i-1] = [None]
             
-        print treemat
         for s in range(1,n):
             for i in range(1,n-s+1):
                 j = i + s
                 for k in range(i, j+1):
-                    temproot = TreeNode(k)  
                     left_tree = treemat[i][k-1]
                     right_tree = treemat[k+1][j]
 
                     for left in left_tree:
                         for right in right_tree:
+                            temproot = TreeNode(k)  
                             temproot.left = left
                             temproot.right = right 
                             treemat[i][j].append(temproot)
-                            # print self.preorderTraversal(temproot)
-        for root in treemat[1][n][:]:
-            print self.preorderTraversal(root)
-        return  treemat[1][n][:]
+
+        return  treemat[1][n]
+
+
     def preorderTraversal(self, root):
         if root == None:
             return []
