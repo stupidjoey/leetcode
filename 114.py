@@ -1,9 +1,9 @@
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 class Solution:
     # @param {TreeNode} root
@@ -12,17 +12,17 @@ class Solution:
         if root == None:
             return
         cur_node = root
-        rightest_node = root
-        while rightest_node.right != None:
-            rightest_node = rightest_node.right
-        while cur_node.left != None or cur_node.right != None:
+        while cur_node != None:
             if cur_node.left != None:
-                rightest_node.right = cur_node.left
-                rightest_node = cur_node.left
-                while rightest_node.right != None:
-                    rightest_node = rightest_node.right
+                cur_right = cur_node.right
+                cur_left = cur_node.left
+                cur_node.right = cur_node.left
                 cur_node.left = None
+                while cur_left.right !=None:
+                    cur_left = cur_left.right
+                cur_left.right = cur_right
             cur_node = cur_node.right
+        return
 
         
         
