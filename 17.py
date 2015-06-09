@@ -20,11 +20,17 @@ class Solution:
         output = digit_map[d0]
         for d in digits[1:]:
             strset = digit_map[d]
-            for idx in len(output):
-                for c in strset:
-                    output[idx] += c
+            temp_output = output[:]
+            output = []
+            for c in strset:
+                for out in temp_output:
+                    out += c
+                    output.append(out)
+
                     
         return output
+        
+        
         
         
 sol = Solution()
