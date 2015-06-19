@@ -1,6 +1,8 @@
 class Solution:
     # @param {integer[]} nums
     # @return {void} Do not return anything, modify nums in-place instead.
+    
+    # original solution - counting sort
     def sortColors(self, nums):
         
         numdict = {}.fromkeys([0,1,2],0)
