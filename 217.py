@@ -11,3 +11,14 @@ class Solution:
             if numsdict[key] > 1:
                 return True
         return False
+
+
+    # new solution 
+    def containsDuplicate(self, nums):
+        
+        nums_map = dict()
+        for n in nums:
+            if n in nums_map:
+                return True
+            nums_map[n] = 1
+        return False

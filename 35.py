@@ -18,5 +18,22 @@ class Solution:
             find_idx = self.searchInsert(nums[0:p_idx], target)
             return find_idx
 
-            
+    
+    # new solution : loop
+    def searchInsert(self, nums, target):
         
+        n = len(nums)
+        low = 0 
+        high = n - 1
+        
+        while low <= high:
+            mid = low + (high - low) / 2
+            mid_val = nums[mid]
+            if mid_val == target :
+                return mid
+            elif mid_val < target:
+                low = mid +1
+            else:
+                high = mid - 1
+                
+        return low     
