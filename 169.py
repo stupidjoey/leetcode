@@ -17,3 +17,21 @@ class Solution:
                 max_num = key
                 
         return max_num
+
+    # new solution 
+    def majorityElement(self, nums):
+        
+        maj = nums[0]
+        pointer = 1
+        
+        for n in nums[1:]:
+            if pointer == 0:
+                maj = n
+                pointer = 1
+            else:
+                if n == maj:
+                    pointer += 1
+                else:
+                    pointer -= 1
+        return maj
+    
