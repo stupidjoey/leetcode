@@ -1,7 +1,7 @@
 class Solution:
     # @param {integer} n
     # @return {integer[][]}
-    def generateMatrix(self, n):
+    def generateMatrix1(self, n):
         if n == 0:
             return []
         matrix = [ [0 for x in range(n)] for y in range(n)]
@@ -40,6 +40,44 @@ class Solution:
                 count += 1
              
         return matrix
-        
-        
-        
+    
+    # new solution 
+    def generateMatrix(self, n):
+        mat = [ [0 for x in range(n)] for y in range(n)]
+        i = 0
+        k = 1
+        while k <= n * n:
+            j = i
+            #  to right
+            while j < n - i:
+                mat[i][j] = k
+                j += 1
+                k += 1
+            j = i + 1
+            # down
+            while j < n - i-1 :
+                mat[j][n-i-1] = k
+                j += 1
+                k += 1
+            
+            j = n - i - 1
+            ## to left
+            while j >i:
+                mat[n-i-1][j] = k
+                j -= 1
+                k += 1
+            
+            j = n - i - 1
+            # up
+            while j >i :
+                mat[j][i] = k
+                j -= 1
+                k += 1
+            
+            i += 1
+            
+        return mat
+            
+               
+sol = Solution()
+print sol.generateMatrix(2)

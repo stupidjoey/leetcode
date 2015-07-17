@@ -31,6 +31,53 @@ class Solution:
         return False
         
         
+    # new solution
+    def searchMatrix(self, matrix, target):
+        m = len(matrix)
+        n = len(matrix[0])
         
+        low = 0
+        high = m - 1
         
+        while low < high:
+            mid = (low + high)/2
+            if matrix[mid][n-1] >= target:
+                high = mid
+            else:
+                low = mid + 1
+        row = low
+        left = 0 
+        right = n - 1
+        
+        while left <= right:
+            mid = (left + right)/2
+            if matrix[row][mid] == target :
+                return True
+            elif  matrix[row][mid] > target :
+                right = mid - 1
+            elif matrix[row][mid] < target:
+                left = mid + 1
+        return False
+    
+    # new solution 
+    def searchMatrix(self, matrix, target):
+        m = len(matrix)
+        n = len(matrix[0])
+        
+        low = 0
+        high = m * n -1
+        
+        while low <= high:
+            mid = (low + high)/2
+            val = matrix[mid/n][mid%n]
+            
+            if val > target:
+                high = mid - 1
+            elif val == target:
+                return True
+            else:
+                low = mid + 1
+            
+        
+        return False   
         

@@ -27,4 +27,16 @@ class Solution:
         
         
         return max_profit,min_price,max_price
+    
+    # new solution   DP
+    def maxProfit(self, prices):
+        n = len(prices)
+        if n ==0 :
+            return 0
+        min_val = prices[0]
+        max_price = 0  
+        for i in range(1,n):
+            max_price = max(max_price, prices[i] - min_val)
+            min_val = min(min_val, prices[i])
         
+        return max_price
